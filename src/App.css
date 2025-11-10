@@ -7,6 +7,7 @@ html {
   padding: 0;
   background-color: #0a0a0a;
   overflow: hidden;
+  cursor: auto; /* Show default cursor alongside custom cursor */
 }
 
 .App {
@@ -15,6 +16,7 @@ html {
   overflow: hidden;
   position: relative;
   background-color: #0a0a0a;
+  cursor: auto; /* Show default cursor alongside custom cursor */
 }
 
 canvas {
