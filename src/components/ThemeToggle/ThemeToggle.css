@@ -1,0 +1,320 @@
+.theme-toggle {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  border-radius: 50px;
+  overflow: hidden;
+  /* Smooth ease-in-out - slower for smoother expansion */
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 35px;
+  height: 35px;
+  transform-origin: center;
+  will-change: width, gap, padding;
+}
+
+/* Expanded state - smooth width expansion with specific value */
+.theme-toggle.expanded {
+  gap: 6px;
+  padding: 0 5px;
+  width: 84px; /* Exact width: 5px + 28px + 6px + 28px + 5px + borders */
+  overflow: visible;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle__option {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Smooth ease-in-out transitions matching container */
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+  position: relative;
+  transform-origin: center;
+  will-change: transform, opacity, background;
+}
+
+/* Active option (currently selected) */
+.theme-toggle__option.active {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  /* Ultra slow breathing animation */
+  animation: breatheUltraSlow 8s ease-in-out infinite;
+}
+
+/* Dark mode - white border for blending (#ffffff) */
+[data-theme="dark"] .theme-toggle__option.active {
+  border: 1px solid #ffffff;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+/* Light mode - dark border for blending (#333333) */
+[data-theme="light"] .theme-toggle__option.active {
+  border: 1px solid #333333;
+  box-shadow: 0 4px 15px rgba(51, 51, 51, 0.2), 0 0 20px rgba(51, 51, 51, 0.1);
+}
+
+/* Ultra slow breathing animation - wave-like */
+@keyframes breatheUltraSlow {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.015);
+  }
+}
+
+/* Solo mode - when collapsed, show only active */
+.theme-toggle__option.solo {
+  width: 35px;
+  height: 35px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  /* Ultra slow gentle floating */
+  animation: idleFloatUltraSlow 10s ease-in-out infinite;
+}
+
+/* Touch device - add tap indication */
+.theme-toggle.touch-device .theme-toggle__option.solo {
+  cursor: pointer;
+}
+
+.theme-toggle.touch-device .theme-toggle__option.solo:active {
+  transform: scale(0.95);
+  transition: transform 0.1s ease;
+}
+
+/* Dark mode solo - white border for blending */
+[data-theme="dark"] .theme-toggle__option.solo {
+  border: 1px solid #ffffff;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+}
+
+/* Light mode solo - dark border for blending */
+[data-theme="light"] .theme-toggle__option.solo {
+  border: 1px solid #333333;
+  box-shadow: 0 0 15px rgba(51, 51, 51, 0.15);
+}
+
+/* Ultra slow idle floating animation - wave motion */
+@keyframes idleFloatUltraSlow {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Inactive option (alternative mode) */
+.theme-toggle__option.inactive {
+  background: transparent;
+  opacity: 0.5;
+  transform: scale(1);
+  /* Pure transition - no animation, no jerk */
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-toggle__option.inactive:hover {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.05);
+  /* Remove transition override - use inherited 0.8s */
+}
+
+.theme-toggle__option.active:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  /* Remove transition override - use inherited 0.8s */
+}
+
+.theme-toggle__icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  /* Match parent transition timing */
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  transform-origin: center;
+  will-change: transform, filter;
+}
+
+/* Active icon - ultra slow glowing effect */
+.theme-toggle__option.active .theme-toggle__icon {
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+  animation: iconGlowUltraSlow 8s ease-in-out infinite;
+}
+
+/* Ultra slow icon glow breathing animation - wave flow */
+@keyframes iconGlowUltraSlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+    transform: scale(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 11px rgba(255, 255, 255, 0.85));
+    transform: scale(1.02);
+  }
+}
+
+/* Theme-specific icon colors */
+[data-theme="dark"] .theme-toggle__option.active .theme-toggle__icon {
+  filter: invert(1) brightness(1.2)
+    drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+  animation: iconGlowUltraSlowDark 8s ease-in-out infinite;
+}
+
+[data-theme="light"] .theme-toggle__option.active .theme-toggle__icon {
+  filter: brightness(0) saturate(100%)
+    drop-shadow(0 0 8px rgba(255, 200, 0, 0.6));
+  animation: iconGlowUltraSlowLight 8s ease-in-out infinite;
+}
+
+@keyframes iconGlowUltraSlowDark {
+  0%,
+  100% {
+    filter: invert(1) brightness(1.2)
+      drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+    transform: scale(1);
+  }
+  50% {
+    filter: invert(1) brightness(1.32)
+      drop-shadow(0 0 11px rgba(255, 255, 255, 0.85));
+    transform: scale(1.02);
+  }
+}
+
+@keyframes iconGlowUltraSlowLight {
+  0%,
+  100% {
+    filter: brightness(0) saturate(100%)
+      drop-shadow(0 0 8px rgba(255, 200, 0, 0.6));
+    transform: scale(1);
+  }
+  50% {
+    filter: brightness(0) saturate(100%)
+      drop-shadow(0 0 11px rgba(255, 200, 0, 0.85));
+    transform: scale(1.02);
+  }
+}
+
+/* Inactive icon - grayscale and faded */
+.theme-toggle__option.inactive .theme-toggle__icon {
+  filter: grayscale(1) brightness(0.7);
+}
+
+/* Dark mode inactive icon - brighter so it's visible */
+[data-theme="dark"] .theme-toggle__option.inactive .theme-toggle__icon {
+  filter: grayscale(0.5) brightness(1.2) invert(1);
+}
+
+/* Light mode inactive icon - darker for visibility */
+[data-theme="light"] .theme-toggle__option.inactive .theme-toggle__icon {
+  filter: grayscale(0.5) brightness(0.5);
+}
+
+/* Theme-specific backgrounds */
+[data-theme="dark"] .theme-toggle.expanded {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="dark"] .theme-toggle__option.active {
+  background: rgba(255, 255, 255, 0.12);
+  /* Border defined above with #F24B42 */
+}
+
+[data-theme="light"] .theme-toggle.expanded {
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="light"] .theme-toggle__option.active {
+  background: rgba(0, 0, 0, 0.12);
+  /* Border defined above with #5551FF */
+}
+
+[data-theme="light"] .theme-toggle__option.solo {
+  background: rgba(0, 0, 0, 0.08);
+  /* Border defined above with #5551FF */
+}
+
+/* Responsive sizing */
+@media (max-width: 768px) {
+  .theme-toggle {
+    width: 32px;
+    height: 32px;
+    top: 20px;
+    right: 20px;
+  }
+
+  .theme-toggle__option {
+    width: 26px;
+    height: 26px;
+  }
+
+  .theme-toggle__option.solo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .theme-toggle__icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .theme-toggle.expanded {
+    gap: 6px;
+    padding: 0 4px;
+    width: 76px; /* 4px + 26px + 6px + 26px + 4px + borders */
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-toggle {
+    width: 28px;
+    height: 28px;
+    top: 15px;
+    right: 15px;
+  }
+
+  .theme-toggle__option {
+    width: 22px;
+    height: 22px;
+  }
+
+  .theme-toggle__option.solo {
+    width: 28px;
+    height: 28px;
+  }
+
+  .theme-toggle__icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .theme-toggle.expanded {
+    gap: 5px;
+    padding: 0 3px;
+    width: 64px; /* 3px + 22px + 5px + 22px + 3px + borders */
+  }
+}

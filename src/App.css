@@ -1,12 +1,110 @@
-@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+/* TWK Lausanne Font */
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("./assets/fonts/TWKLausanne/Web/TWKLausanne-400.woff2")
+      format("woff2"),
+    url("./assets/fonts/TWKLausanne/Web/TWKLausanne-400.woff") format("woff"),
+    url("./assets/fonts/TWKLausanne/Web/TWKLausanne-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("./assets/fonts/TWKLausanne/Web/TWKLausanne-400Italic.woff2")
+      format("woff2"),
+    url("./assets/fonts/TWKLausanne/Web/TWKLausanne-400Italic.woff")
+      format("woff"),
+    url("./assets/fonts/TWKLausanne/Web/TWKLausanne-400Italic.ttf")
+      format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("./assets/fonts/TWKLausanne/Web/TWKLausanne-300.woff2")
+      format("woff2"),
+    url("./assets/fonts/TWKLausanne/Web/TWKLausanne-300.woff") format("woff"),
+    url("./assets/fonts/TWKLausanne/Web/TWKLausanne-300.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("./assets/fonts/TWKLausanne/Web/TWKLausanne-700.woff2")
+      format("woff2"),
+    url("./assets/fonts/TWKLausanne/Web/TWKLausanne-700.woff") format("woff"),
+    url("./assets/fonts/TWKLausanne/Web/TWKLausanne-700.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("./assets/fonts/TWKLausanne/Web/TWKLausanne-900.woff2")
+      format("woff2"),
+    url("./assets/fonts/TWKLausanne/Web/TWKLausanne-900.woff") format("woff"),
+    url("./assets/fonts/TWKLausanne/Web/TWKLausanne-900.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "TWK Lausanne";
+  src: url("./assets/fonts/TWKLausanne/Web/TWKLausanne-1000.woff2")
+      format("woff2"),
+    url("./assets/fonts/TWKLausanne/Web/TWKLausanne-1000.woff") format("woff"),
+    url("./assets/fonts/TWKLausanne/Web/TWKLausanne-1000.ttf")
+      format("truetype");
+  font-weight: 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Theme variables */
+:root {
+  --transition-dur: 0.3s;
+  /* Default theme (dark) */
+  --bg-color: #0a0a0a;
+  --text-color: #ffffff;
+  --text-dim: #cccccc;
+  --logo-color: #ffffff;
+}
+
+/* Dark theme (default) */
+:root[data-theme="dark"],
+html[data-theme="dark"] {
+  --bg-color: #0a0a0a;
+  --text-color: #ffffff;
+  --text-dim: #cccccc;
+  --logo-color: #ffffff;
+}
+
+/* Light theme */
+:root[data-theme="light"],
+html[data-theme="light"] {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --text-dim: #555555;
+  --logo-color: #333333;
+}
 
 /* Set background to match app background color */
 body,
 html {
   margin: 0;
   padding: 0;
-  background-color: #0a0a0a;
+  background-color: var(--bg-color);
   overflow: hidden;
+  cursor: auto;
+  transition: background-color var(--transition-dur);
 }
 
 .App {
@@ -14,7 +112,9 @@ html {
   width: 100vw;
   overflow: hidden;
   position: relative;
-  background-color: #0a0a0a;
+  background-color: var(--bg-color);
+  cursor: auto;
+  transition: background-color var(--transition-dur);
 }
 
 canvas {
@@ -26,7 +126,7 @@ canvas {
 /* Brand logo at top center */
 .brand-logo {
   position: absolute;
-  top: 60px;
+  top: 30px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 20;
@@ -49,10 +149,20 @@ canvas {
   width: 60px;
   height: auto;
   opacity: 0.9;
-  filter: brightness(0) saturate(100%) invert(100%);
   transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   pointer-events: auto;
+}
+
+/* Dark theme logo filter */
+[data-theme="dark"] .dragonfly-logo {
+  filter: brightness(0) saturate(100%) invert(100%);
+}
+
+/* Light theme logo filter */
+[data-theme="light"] .dragonfly-logo {
+  filter: brightness(0) saturate(100%) invert(20%) sepia(0%) saturate(0%)
+    hue-rotate(0deg) brightness(95%) contrast(90%);
 }
 
 .dragonfly-logo:hover {
@@ -92,10 +202,20 @@ canvas {
   height: auto;
   max-height: 70vh;
   opacity: 0.9;
-  filter: brightness(0) saturate(100%) invert(100%);
   transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   pointer-events: auto;
+}
+
+/* Dark theme logo filter */
+[data-theme="dark"] .barraga-logo {
+  filter: brightness(0) saturate(100%) invert(100%);
+}
+
+/* Light theme logo filter */
+[data-theme="light"] .barraga-logo {
+  filter: brightness(0) saturate(100%) invert(20%) sepia(0%) saturate(0%)
+    hue-rotate(0deg) brightness(95%) contrast(90%);
 }
 
 .barraga-logo:hover {
@@ -131,21 +251,27 @@ canvas {
 }
 
 .creation-text {
-  font-family: "Lato", sans-serif;
+  font-family: "TWK Lausanne", sans-serif;
   font-weight: 400;
   font-size: 16px;
-  color: #f0f0f0;
+  color: var(--text-color);
   letter-spacing: 0.5px;
   margin-right: 12px;
   display: inline-block;
+  transition: color var(--transition-dur);
 }
 
 /* Smooth glow and dim animation */
-.glow-text {
-  animation: breathingGlow 4s ease-in-out infinite;
+[data-theme="dark"] .glow-text {
+  animation: breathingGlowDark 4s ease-in-out infinite;
 }
 
-@keyframes breathingGlow {
+[data-theme="light"] .glow-text {
+  animation: breathingGlowLight 4s ease-in-out infinite;
+}
+
+/* Dark theme breathing animation */
+@keyframes breathingGlowDark {
   0% {
     opacity: 0.85;
     color: #cccccc;
@@ -163,13 +289,33 @@ canvas {
   }
 }
 
+/* Light theme breathing animation */
+@keyframes breathingGlowLight {
+  0% {
+    opacity: 0.85;
+    color: #555555;
+    text-shadow: 0 0 8px rgba(85, 85, 85, 0.2);
+  }
+  50% {
+    opacity: 1;
+    color: #333333;
+    text-shadow: 0 0 12px rgba(51, 51, 51, 0.3);
+  }
+  100% {
+    opacity: 0.85;
+    color: #555555;
+    text-shadow: 0 0 8px rgba(85, 85, 85, 0.2);
+  }
+}
+
 .description-text {
-  font-family: "Lato", sans-serif;
+  font-family: "TWK Lausanne", sans-serif;
   font-weight: 400;
   font-size: 16px;
-  color: #cccccc;
+  color: var(--text-dim);
   letter-spacing: 0.3px;
   opacity: 0.7;
+  transition: color var(--transition-dur);
 }
 
 /* Responsive logo sizing */
