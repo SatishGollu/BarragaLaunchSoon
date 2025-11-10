@@ -7,6 +7,12 @@ import { gsap } from "gsap";
 import vertexShader from "../../../../shaders/sphere.vert?raw";
 import fragmentShader from "../../../../shaders/sphere.frag?raw";
 
+// Get current theme background color
+const getThemeBackgroundColor = (): string => {
+  const theme = document.documentElement.getAttribute("data-theme") || "dark";
+  return theme === "dark" ? "#0a0a0a" : "#e7e7e7";
+};
+
 // Simple Morphing Sphere
 const MorphingSphere: React.FC = () => {
   const meshRef = useRef<THREE.Mesh>(null);
@@ -110,12 +116,28 @@ const MorphingSphere: React.FC = () => {
   );
 };
 
-// Simple dark background
+// Simple dark background - now theme-aware
 const SimpleBackground: React.FC = () => {
+  const [bgColor, setBgColor] = useState<string>(getThemeBackgroundColor());
+
+  useEffect(() => {
+    // Update background color when theme changes
+    const observer = new MutationObserver(() => {
+      setBgColor(getThemeBackgroundColor());
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <mesh position={[0, 0, -3]}>
       <planeGeometry args={[100, 100]} />
-      <meshBasicMaterial color="#0a0a0a" />
+      <meshBasicMaterial color={bgColor} />
     </mesh>
   );
 };

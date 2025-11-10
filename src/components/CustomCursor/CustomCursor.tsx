@@ -7,7 +7,7 @@ const TRAIL_OPACITY_SCALE = 0.8;
 
 const THEME_COLORS = {
   dark: "#F24B42",
-  light: "#5551FF",
+  light: "#F24B42", // Keep same coral color for both modes
 } as const;
 
 interface Trail {
