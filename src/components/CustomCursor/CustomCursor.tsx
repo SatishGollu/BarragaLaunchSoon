@@ -34,19 +34,25 @@ const CustomCursor = ({
   const cursorPos = useRef({ x: 0, y: 0 });
   const trailsRef = useRef<Trail[]>([]);
   const [currentColor, setCurrentColor] = useState(darkColor);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkTouchDevice = () => {
+    const checkDevice  = () => {
       const hasTouch =
         "ontouchstart" in window ||
         navigator.maxTouchPoints > 0 ||
         // @ts-ignore
         navigator.msMaxTouchPoints > 0;
-      setIsTouchDevice(hasTouch);
+      const isMobileScreen = window.innerWidth <= 1024;
+      const isActualMobile = hasTouch && isMobileScreen;
+      
+      setIsMobile(isActualMobile);
     };
 
-    checkTouchDevice();
+    checkDevice();
+    window.addEventListener("resize", checkDevice);
+    
+    return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
   useEffect(() => {
@@ -161,7 +167,7 @@ const CustomCursor = ({
     };
   }, []);
 
-  if (isTouchDevice) {
+  if (isMobile) {
     return null;
   }
 
