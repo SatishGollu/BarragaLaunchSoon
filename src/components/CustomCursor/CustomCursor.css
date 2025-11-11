@@ -29,27 +29,27 @@
 }
 
 body {
-  cursor: auto;
+  cursor: auto !important;
 }
 
+@media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+  .cursor,
+  .trail {
+    display: block;
+  }
+}
+
+/* Hide custom cursor on mobile and touch devices */
 @media (hover: none) and (pointer: coarse) {
   .cursor,
   .trail {
     display: none !important;
-  }
-
-  body {
-    cursor: auto !important;
   }
 }
 
 @media (max-width: 1024px) {
   .cursor,
   .trail {
-    display: none;
-  }
-
-  body {
-    cursor: auto;
+    display: none !important;
   }
 }
