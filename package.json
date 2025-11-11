@@ -15,11 +15,13 @@
     "gsap": "^3.12.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^7.9.5",
     "three": "^0.157.0"
   },
   "devDependencies": {
     "@types/react": "^18.3.26",
     "@types/react-dom": "^18.3.7",
+    "@types/react-router-dom": "^5.3.3",
     "@types/three": "^0.181.0",
     "@vitejs/plugin-react": "^4.1.0",
     "eslint": "^8.53.0",

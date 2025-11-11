@@ -115,12 +115,19 @@ html {
   background-color: var(--bg-color);
   cursor: auto;
   transition: background-color var(--transition-dur);
+  z-index: 1;
 }
 
 canvas {
   height: 100% !important;
   width: 100% !important;
   display: block;
+}
+
+/* Ensure morphing ball canvas has proper z-index */
+.App canvas {
+  position: relative;
+  z-index: 5;
 }
 
 /* Brand logo at top center */
