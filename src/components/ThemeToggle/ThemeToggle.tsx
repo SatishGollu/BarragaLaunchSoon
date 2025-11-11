@@ -14,7 +14,7 @@ const ThemeToggle = () => {
       const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
       const isMobileScreen = window.innerWidth <= 1024;
       const isActualMobile = hasTouch && isMobileScreen;
-      
+
       // Only treat as touch device if it's actually a mobile device
       setIsTouchDevice(isActualMobile);
     };

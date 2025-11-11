@@ -28,10 +28,12 @@
   will-change: transform, left, top, opacity;
 }
 
+/* Keep default cursor visible on all devices */
 body {
   cursor: auto !important;
 }
 
+/* Show custom cursor on desktop, hide on mobile */
 @media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
   .cursor,
   .trail {

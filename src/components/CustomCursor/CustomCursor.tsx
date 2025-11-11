@@ -37,21 +37,22 @@ const CustomCursor = ({
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const checkDevice  = () => {
+    const checkDevice = () => {
       const hasTouch =
         "ontouchstart" in window ||
         navigator.maxTouchPoints > 0 ||
         // @ts-ignore
         navigator.msMaxTouchPoints > 0;
+
       const isMobileScreen = window.innerWidth <= 1024;
       const isActualMobile = hasTouch && isMobileScreen;
-      
+
       setIsMobile(isActualMobile);
     };
 
     checkDevice();
     window.addEventListener("resize", checkDevice);
-    
+
     return () => window.removeEventListener("resize", checkDevice);
   }, []);
 

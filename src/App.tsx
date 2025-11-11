@@ -6,6 +6,7 @@ import TypewriterText from "@components/features/ComingSoon/TypewriterText";
 import Logo from "@components/common/Logo";
 import { CustomCursor } from "@components/CustomCursor";
 import { ThemeToggle } from "@components/ThemeToggle";
+
 import barragaLogo from "@assets/logos/onlyBarraga.svg";
 import dragonflyLogo from "@assets/logos/dragonfly.svg";
 import { BRAND_TEXT } from "@constants";
@@ -17,7 +18,8 @@ const App: React.FC = () => {
   React.useEffect(() => {
     // Sync with theme changes
     const updateTheme = () => {
-      const currentTheme = document.documentElement.getAttribute("data-theme") || "dark";
+      const currentTheme =
+        document.documentElement.getAttribute("data-theme") || "dark";
       setTheme(currentTheme as "dark" | "light");
     };
 

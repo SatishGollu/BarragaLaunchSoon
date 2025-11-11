@@ -9,7 +9,7 @@
   padding: 0;
   border-radius: 50px;
   overflow: hidden;
-  /* Smooth ease-in-out - slower for smoother expansion */
+  /* Ultra smooth transition - no jerk */
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   width: 35px;
   height: 35px;
@@ -38,11 +38,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Smooth ease-in-out transitions matching container */
-  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1), 
-              background-color 0.6s cubic-bezier(0.23, 1, 0.32, 1),
-              transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
-              box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  /* Ultra smooth transitions - no transform conflicts */
+  transition: opacity 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    background-color 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   padding: 0;
   position: relative;
   transform-origin: center;
@@ -141,6 +141,7 @@
   opacity: 1;
   background: rgba(255, 255, 255, 0.1);
   transform: scale(1.02);
+}
 
 .theme-toggle__option.active:hover {
   transform: scale(1.01);
