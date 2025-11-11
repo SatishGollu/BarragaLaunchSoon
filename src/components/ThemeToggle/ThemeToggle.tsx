@@ -9,10 +9,14 @@ const ThemeToggle = () => {
   const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   useEffect(() => {
-    // Detect touch device
+    // Detect touch device and screen size for proper mobile detection
     const checkTouchDevice = () => {
       const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
-      setIsTouchDevice(hasTouch);
+      const isMobileScreen = window.innerWidth <= 1024;
+      const isActualMobile = hasTouch && isMobileScreen;
+      
+      // Only treat as touch device if it's actually a mobile device
+      setIsTouchDevice(isActualMobile);
     };
 
     checkTouchDevice();
