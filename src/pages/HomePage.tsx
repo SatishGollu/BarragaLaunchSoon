@@ -16,23 +16,16 @@ const HomePage: React.FC = () => {
   const [theme, setTheme] = React.useState<"dark" | "light">("dark");
   const [showRibbonOverlay, setShowRibbonOverlay] = React.useState(false);
 
-  // Mouse idle detection - show ribbon after 3 seconds of inactivity (for testing)
+  // Mouse idle detection - show ribbon after 14 seconds of inactivity
   useMouseIdle({
-    idleTime: 3000, // 3 seconds for testing
+    idleTime: 14000, // 14 seconds - optimal psychological sweet spot
     onIdle: () => {
-      console.log("🎭 Showing ribbon overlay");
       setShowRibbonOverlay(true);
     },
     onActive: () => {
-      console.log("🏠 Hiding ribbon overlay");
       setShowRibbonOverlay(false);
     },
   });
-
-  // Debug: Log overlay state changes
-  React.useEffect(() => {
-    console.log("🎯 Ribbon overlay state changed:", showRibbonOverlay);
-  }, [showRibbonOverlay]);
 
   React.useEffect(() => {
     // Sync with theme changes
@@ -57,7 +50,7 @@ const HomePage: React.FC = () => {
 
   return (
     <>
-      {/* Idle Ribbon Overlay - shows when mouse is idle for 3 seconds */}
+      {/* Idle Ribbon Overlay - shows when mouse is idle for 10 seconds */}
       <IdleRibbonOverlay isVisible={showRibbonOverlay} />
 
       {/* Custom Cursor */}
