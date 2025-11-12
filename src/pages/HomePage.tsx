@@ -16,9 +16,9 @@ const HomePage: React.FC = () => {
   const [theme, setTheme] = React.useState<"dark" | "light">("dark");
   const [showRibbonOverlay, setShowRibbonOverlay] = React.useState(false);
 
-  // Mouse idle detection - show ribbon after 20 seconds of inactivity
+  // Mouse idle detection - show ribbon after 16 seconds of inactivity
   useMouseIdle({
-    idleTime: 20000, // 20 seconds - optimal psychological sweet spot
+    idleTime: 16000, // 16 seconds - optimal psychological sweet spot
     onIdle: () => {
       setShowRibbonOverlay(true);
     },
