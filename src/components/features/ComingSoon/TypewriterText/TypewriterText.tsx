@@ -4,12 +4,15 @@ import "./TypewriterText.css";
 const TypewriterText: React.FC = () => {
   const creationText = "Barraga is in creation.";
   const descriptionText =
-    "We're shaping timeless clothing — to live with you, and move with your journey.";
+    "a modern Indian luxury Fashion house shaping quiet detail, thoughtful silhouettes, and evolving palettes. A vision unfolding step by step";
 
   return (
     <div className="subtitle-text">
       <span className="creation-text glow-text">{creationText}</span>
-      <span className="description-text static-text">{descriptionText}</span>
+      <span className="description-text static-text">
+        {descriptionText}
+        <span className="cursor-color-dot">.</span>
+      </span>
     </div>
   );
 };
