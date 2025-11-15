@@ -15,7 +15,7 @@ const AppRouter: React.FC = () => {
     <ErrorBoundary>
       <Router>
         <Suspense
-          fallback={<Loading fullScreen message="Loading Barraga..." />}
+          fallback={<Loading fullScreen message="Loading BARRAḠA..." />}
         >
           <Routes>
             <Route path="/" element={<HomePage />} />
