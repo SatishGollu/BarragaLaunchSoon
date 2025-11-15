@@ -28,7 +28,7 @@ const IdleRibbonOverlay: React.FC<IdleRibbonOverlayProps> = ({ isVisible }) => {
 
       const timer = setTimeout(() => {
         setShouldRender(false);
-        document.title = "BARRAGA";
+        document.title = "BARRAḠA";
       }, 500);
 
       return () => clearTimeout(timer);
@@ -43,7 +43,7 @@ const IdleRibbonOverlay: React.FC<IdleRibbonOverlayProps> = ({ isVisible }) => {
         <FloatingRibbon />
       </div>
       <div className="idle-footer-logo">
-        <img src={barragaLogo} alt="Barraga" className="subtle-logo" />
+        <img src={barragaLogo} alt="BARRAḠA" className="subtle-logo" />
       </div>
     </div>
   );

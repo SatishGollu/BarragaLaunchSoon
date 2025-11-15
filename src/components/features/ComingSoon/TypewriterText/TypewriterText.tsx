@@ -2,7 +2,7 @@ import React from "react";
 import "./TypewriterText.css";
 
 const TypewriterText: React.FC = () => {
-  const creationText = "Barraga is in creation.";
+  const creationText = "BARRAḠA is in creation.";
   const descriptionText =
     "a modern Indian luxury Fashion house shaping quiet detail, thoughtful silhouettes, and evolving palettes. A vision unfolding step by step";
 
